@@ -1,2 +1,2 @@
 # updeshxp.github.io
-My Website
+My Resume Website
