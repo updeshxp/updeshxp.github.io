@@ -1,2 +1,2 @@
 # updeshxp.github.io
-My Resume Website
+This is My Resume Website which is built using materialise and bootstrap css frameworks and JQuery.
