@@ -791,6 +791,97 @@ header.nav {
 /* 7. Experience Section Styles
  ----------------------------------- */
 
+
+ .timeline {
+    border-left: 3px solid rgb(219, 203, 189);;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    position: relative;
+    padding: 0 30px;
+    margin-left: 280px;
+  }
+  .timeline .item {
+    position: relative;
+    margin-bottom: 45px;
+  }
+  .timeline .item:last-child {
+    margin-bottom: 0;
+  }
+  .timeline .item:before {
+    content: "";
+    position: absolute;
+    left: -43px;
+    top: 0;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: #fff;
+    border: 3px solid rgb(219, 203, 189);
+  }
+  .timeline .item:after {
+    content: "";
+    position: absolute;
+    left: -37px;
+    top: 6px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: rgb(255, 255, 255);
+    z-index: 10;
+  }
+  .timeline .work-place {
+    position: relative;
+  }
+  .timeline .location {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    color: #ffffff;
+  }
+  .timeline .location .fa {
+    margin-right: 5px;
+  }
+  .timeline .place {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .timeline .job-meta {
+    position: absolute;
+    left: -280px;
+    top: 0;
+  }
+  .timeline .job-meta .title {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+  }
+  .timeline .job-meta .time {
+    color: #ffffff;
+  }
+  .timeline .job-desc {
+    color: rgb(255, 255, 255);
+    font-size: 12px !important;
+  }
+
+
+  
 .experience-wrap {
     padding: 110px 0;
 }
@@ -1160,6 +1251,19 @@ span.num {
  ----------------------------------- */
 
 /*customizing materialize.css*/
+@media (max-width: 767px) {
+    .timeline {
+        margin-left: 0;
+        padding-right: 0;
+      }
+      .timeline .place {
+        margin-bottom: 5px;
+      }
+      .timeline .job-meta {
+        position: static;
+        margin-bottom: 15px;
+      }
+}
 
 .container {
     padding: 0 15px;
@@ -1182,6 +1286,7 @@ span.num {
   .container {
     width: 1170px;
   }
+  
 }
 
 .container .row {
@@ -1255,6 +1360,7 @@ span.num {
 
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
+
 }
 
 @media print {
