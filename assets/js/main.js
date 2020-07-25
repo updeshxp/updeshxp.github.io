@@ -452,7 +452,33 @@ $(window).load(function(){
 	}).init();
 });
 
+$('#sendInfo').on('submit', function (e) {
 
+    e.preventDefault();
+    //$("#loading-overlay").show();
+    var url = $(this).attr('action');
+    $.ajax({
+      url: url,
+      type: "post",
+      data: $('#sendInfo').serialize(),
+      timeout: 8000,
+      success: function (response) {
+		//console.log(response);
+		if(response.result=="success"){
+			$('#sendInfo').trigger("reset");
+			location.replace("https://updeshxp.github.io/thanks");
+		}
+      },
+      error: function (x, textstatus, m) {
+        if (textstatus == "timeout") {
+          alert("Request Timeout! Please try again later!")
+        } else {
+          alert("Oops! Looks like some issue from my end! Please contact me via my email/phone. Thank You!")
+        }
+      }
+    });
+
+});
 
 
 
