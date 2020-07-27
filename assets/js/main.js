@@ -454,7 +454,13 @@ $(window).load(function(){
 
 $('#sendInfo').on('submit', function (e) {
 
-    e.preventDefault();
+	e.preventDefault();
+	const spmarr=['lena.tikhonova.2020@bk.ru']
+	var email = document.getElementById("email").value;
+	if(spmarr.indexOf(email)!=-1){
+		alert("spam detected");
+		return false;
+	}
     //$("#loading-overlay").show();
     var url = $(this).attr('action');
     $.ajax({
