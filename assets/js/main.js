@@ -455,14 +455,14 @@ $(window).load(function(){
 $('#sendInfo').on('submit', function (e) {
 
 	e.preventDefault();
-	const spmarr=['lena.tikhonova.2020@bk.ru']
+	const spmarr=['lena.tikhonova.2020@bk.ru','oeuyithlj@canadlanpharmacy.com']
 	var email = document.getElementById("email").value;
 	if(spmarr.indexOf(email)!=-1){
 		alert("spam detected");
 		return false;
 	}
     //$("#loading-overlay").show();
-    var url = $(this).attr('action');
+    var url = "https://script.google.com/macros/s/AKfycbyX6f4c1mno5bZXi3oiAdv-ASk4wfbTp1UGfEfsfQ_DWRvkmg/exec";
     $.ajax({
       url: url,
       type: "post",
