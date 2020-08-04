@@ -69,15 +69,6 @@ $(document).ready(function(){
 		zindex: '9999999'
 	});
 
-	// blog Mesonary
-	if ( $('#blog-posts').length > 0 ) {
-		window.blogMsnry = $('#blog-posts').isotope({
-			itemSelector: '.single-post',
-			isInitLayout: false,
-			layoutMode: 'masonry'
-		});
-	}
-
 });
 
 
@@ -87,7 +78,7 @@ $(window).load(function(){
 	// Preloader
     $('.loader').fadeOut();    
     $('#preloader').delay(350).fadeOut('slow');
-    $('body').delay(350);
+	$('body').delay(350);
 
 
 
@@ -144,6 +135,7 @@ $(window).load(function(){
 	if ( typeof blogMsnry !== "undefined" ) {
 		blogMsnry.isotope('layout');
 	}
+	fetchArticles();
 
 });
 
@@ -161,3 +153,101 @@ $(window).resize(function(){
 	}, 2000);
 
 });
+
+function getImage(str){
+	const regex = /<img.*src="(.*?)"[^>]*>/m;
+	let m;
+	let imgsrc = 'http://placehold.it/350x200';
+	if ((m = regex.exec(str)) !== null) {
+	  // The result can be accessed through the `m`-variable.
+	  m.forEach((match, groupIndex) => {
+		  //console.log(`Found match, group ${groupIndex}: ${match}`);
+		  imgsrc = match;
+	  });
+	}
+	return imgsrc;
+  }
+
+  function shortenText(text,startingPoint ,maxLength) {
+	  text = text.replace(/<.+?>/gi, " ");
+	return text.length > maxLength?
+	   text.slice(startingPoint, maxLength)+"...":
+	   text
+   }
+  
+  function setArticles(jsblog){
+	let items = jsblog.items;
+	let output = '';
+	delay = 0.2;
+	items.forEach(function(post) {
+	  //console.log('Delay is '+delay);
+	  let date = new Date(post.published).toDateString();
+	  imgsrc = getImage(post.content);
+	  summary=shortenText(post.content,0,230);
+	  //console.log(summary);
+	  like = Math.floor(Math.random() * 100)+1;
+	  output+= `<article class="col-sm-6 col-md-4 single-card-box single-post">
+                    <div class="card wow fadeInUpSmall" data-wow-delay="${delay}s" data-wow-duration=".7s">
+                      <div class="card-image">
+                        <div class="card-img-wrap">
+                          <div class="blog-post-thumb waves-effect waves-block waves-light">
+                            <a href="${post.url}"><img class="activator" style="width:350px;height: 200px;object-fit: cover;" src="${imgsrc}" alt="${post.title}">
+                            </a>
+                          </div>
+                          <div class="post-body">
+                            <a href="${post.url}" class="post-title-link brand-text"><h2 class="post-title">${post.title}</h2></a>
+                            <p class="post-content">${summary}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="clearfix card-content">
+                        <a href="#" class="left js-favorite" title="Love this"><i class="mdi-action-favorite"></i><span class="numb">${like}</span></a>
+                        <a href="${post.url}" class="brand-text right waves-effect">Read More</a>
+                      </div>
+                    </div>
+                  </article>`;
+	  delay+=0.2;
+	});
+	document.getElementById('blog-posts').innerHTML = output;
+  }
+  
+  function fetchArticles(){
+	url = "https://www.googleapis.com/blogger/v3/blogs/2604168963277021035/posts"
+	key= atob("QUl6YVN5RGJ5eUk4Q2FxeV9oNDFGMVRFNEZhVGZreTVTOGtSNWhz");
+	maxResults=3;
+	$.ajax({
+	  url: url,
+	  type: "get",
+	  data: {
+		key,
+		maxResults
+	  },
+	  success: function (response) {
+		setArticles(response);
+	  },
+	  error: function (xhr) {
+		  let output= `<article class="col-sm-6 col-md-4 single-card-box single-post">
+		  <div class="card wow fadeInUpSmall" data-wow-delay="0.2s" data-wow-duration=".7s">
+			<div class="card-image">
+			  <div class="card-img-wrap">
+				<div class="blog-post-thumb waves-effect waves-block waves-light">
+				  <a href="#blog"><img class="activator" style="width:350px;height: 200px;object-fit: cover;" src="http://placehold.it/350x200" alt="Loading">
+				  </a>
+				</div>
+				<div class="post-body">
+				  <a href="#blog" class="post-title-link brand-text"><h2 class="post-title">Could not fetch</h2></a>
+				  <p class="post-content">Articles could not be loaded. Please try again</p>
+				</div>
+			  </div>
+			</div>
+			<div class="clearfix card-content">
+			  <a href="#" class="left js-favorite" title="Love this"><i class="mdi-action-favorite"></i><span class="numb">100</span></a>
+			  <a href="#blog" class="brand-text right waves-effect">Error</a>
+			</div>
+		  </div>
+		</article>`;
+		$("#blog-posts").html(output);
+		//Do Something to handle error
+	  }
+	});
+  }
