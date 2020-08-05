@@ -448,7 +448,7 @@ $(window).load(function(){
 	// Wow init
 	new WOW({
 		offset: 200,
-		mobile: false
+		mobile: true
 	}).init();
 });
 
