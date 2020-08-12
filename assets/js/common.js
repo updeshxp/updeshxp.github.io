@@ -157,11 +157,10 @@ $(window).resize(function(){
 function getImage(str){
 	const regex = /<img.*src="(.*?)"[^>]*>/m;
 	let m;
-	let imgsrc = 'http://placehold.it/350x200';
+	let imgsrc = 'images/article.jpg';
 	if ((m = regex.exec(str)) !== null) {
 	  // The result can be accessed through the `m`-variable.
 	  m.forEach((match, groupIndex) => {
-		  //console.log(`Found match, group ${groupIndex}: ${match}`);
 		  imgsrc = match;
 	  });
 	}
@@ -231,7 +230,7 @@ function getImage(str){
 			<div class="card-image">
 			  <div class="card-img-wrap">
 				<div class="blog-post-thumb waves-effect waves-block waves-light">
-				  <a href="#blog"><img class="activator" style="width:350px;height: 200px;object-fit: cover;" src="http://placehold.it/350x200" alt="Loading">
+				  <a href="#blog"><img class="activator" style="width:350px;height: 200px;object-fit: cover;" src="images/article.jpg" alt="Loading">
 				  </a>
 				</div>
 				<div class="post-body">
