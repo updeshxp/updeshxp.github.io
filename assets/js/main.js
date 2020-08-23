@@ -202,46 +202,75 @@ $(document).ready(function($){
 
 
 
-	$('.menu-smooth-scroll').scrollingTo({
-		easing : 'easeOutQuart',
-		animationTime : 1800,
-		callbackBeforeTransition : function(e){
-			if (e.currentTarget.hash !== "") {
-				if ( e.currentTarget.hash !== '#home' ) {
-					$(e.currentTarget).parent().addClass('current').siblings().removeClass('current');
+	// $('.menu-smooth-scroll').scrollingTo({
+	// 	easing : 'easeOutQuart',
+	// 	animationTime : 1800,
+	// 	callbackBeforeTransition : function(e){
+	// 		if (e.currentTarget.hash !== "") {
+	// 			if ( e.currentTarget.hash !== '#home' ) {
+	// 				$(e.currentTarget).parent().addClass('current').siblings().removeClass('current');
+	// 			}
+	// 		}
+
+	// 		$('.button-collapse').sideNav('hide');
+	// 	},
+	// 	callbackAfterTransition : function(e){
+	// 		if (e.currentTarget.hash !== "") {
+	// 			if ( e.currentTarget.hash === '#home' ) {
+	// 				window.location.hash = '';
+	// 			} else {
+	// 				window.location.hash = e.currentTarget.hash;
+	// 			}
+
+	// 		}
+	// 	}
+	// });
+
+
+
+	// $('.section-call-to-btn').scrollingTo({
+	// 	easing : 'easeOutQuart',
+	// 	animationTime : 1800,
+	// 	callbackBeforeTransition : function(e){
+
+	// 	},
+	// 	callbackAfterTransition : function(e){
+	// 	}
+	// });
+
+	$('.section-call-to-btn').on('click', function(e) {
+		e.preventDefault();
+		var target = $(this.getAttribute('href'));
+        $('html, body').animate({scrollTop: target.offset().top}, 1000);
+    });
+
+	$(function() {
+		$('.smoothScroll').on('click', function(event) {
+			event.preventDefault();
+			var target = $(this.getAttribute('href'));
+			$('html, body').animate({scrollTop: target.offset().top}, 800);
+			$('.sidenav').sidenav('close');
+			if (event.currentTarget.hash !== "") {
+				if ( event.currentTarget.hash !== '#about' ) {
+					$(event.currentTarget).parent().addClass('current').siblings().removeClass('current');
 				}
 			}
-
-			$('.button-collapse').sideNav('hide');
-		},
-		callbackAfterTransition : function(e){
-			if (e.currentTarget.hash !== "") {
-				if ( e.currentTarget.hash === '#home' ) {
+			if (event.currentTarget.hash !== "") {
+				if ( event.currentTarget.hash === '#home' ) {
 					window.location.hash = '';
 				} else {
-					window.location.hash = e.currentTarget.hash;
+					window.location.hash = event.currentTarget.hash;
 				}
 
 			}
-		}
-	});
-
-
-
-	$('.section-call-to-btn').scrollingTo({
-		easing : 'easeOutQuart',
-		animationTime : 1800,
-		callbackBeforeTransition : function(e){
-
-		},
-		callbackAfterTransition : function(e){
-		}
-	});
+		});
+	  });
 
 	// Animate scrolling on hire me button
     $('.hire-me-btn').on('click', function(e) {
-        e.preventDefault();
-        $('html, body').animate({scrollTop: $("#contact").offset().top}, 500);
+		e.preventDefault();
+		var target = $(this.getAttribute('href'));
+        $('html, body').animate({scrollTop: target.offset().top}, 500);
     });
 
 
@@ -406,15 +435,15 @@ $(document).ready(function($){
 	}());
 }(jQuery));
 
-$(window).load(function(){
+$(window).on("load", function (e) {
 	
 	// section calling
 	$('.section-call-to-btn.call-to-home').waypoint({
 		handler: function(event, direction) {
-			var $this = $(this);
-			$this.fadeIn(0).removeClass('btn-hidden');
+			var lessbtn = $('#expand_less');
+			lessbtn.fadeIn(0).removeClass('btn-hidden');
 			var showHandler = setTimeout(function(){
-				$this.addClass('btn-show').removeClass('btn-up');
+				lessbtn.addClass('btn-show').removeClass('btn-up');
 				clearTimeout(showHandler);
 			}, 1500);
 		},
@@ -436,7 +465,7 @@ $(window).load(function(){
 	// skills animation
 	$('#skillSlider').waypoint({
 		handler: function(event, direction) {
-			$(this).find('.singel-hr-inner').each(function(){
+			$('#skillSlider').find('.singel-hr-inner').each(function(){
 				var height = $(this).data('height');
 				$(this).css('height', height);
 			});
@@ -486,16 +515,3 @@ $('#sendInfo').on('submit', function (e) {
     });
 
 });
-
-
-
-/*=========== count up statistic ==========*/
-
-var $countNumb = $('.countNumb');
-
-if ( $countNumb.length > 0 ) {
-	$countNumb.counterUp({
-		delay: 15,
-		time: 1700
-	});
-}

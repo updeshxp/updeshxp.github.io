@@ -346,6 +346,7 @@ body {
 }
 
 .section-call-to-btn:hover,
+.section-call-to-btn:focus,
 .section-call-to-btn {
     position: absolute;
     bottom: -25px;
@@ -410,7 +411,7 @@ section.brand-bg .title {
 }
 
 .inline-menu li a {
-    font-size: 13px;
+    font-size: 13px!important;
     font-weight: 500;
 }
 
@@ -472,8 +473,23 @@ header.nav {
     display: none;
 }
 
-.side-nav li {
-    margin-left: 40px;
+.inlinenav li a {
+    color: #000000;
+    padding: 24px 15px 19px;
+    /* margin: 0 15px; */
+    border-bottom: 5px solid transparent;
+    text-transform: uppercase;
+    font-size: 13px!important;
+    font-weight: 500;
+    background-color: transparent;
+    -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+}
+
+
+
+.sidenav {
+    width:240px;
 }
 
 .side-nav li,
@@ -481,15 +497,18 @@ header.nav {
     background-color: transparent;
 }
 
-.side-nav li:first-child {
+.sidenav li:first-child {
     margin-left: 0;
 }
 
-.side-nav li a {
+.sidenav li a {
     color: #727272;
-    padding: 24px 0 0px;
-    border-bottom: 5px solid transparent;
-    text-transform: uppercase;
+    margin:5px 0 0;
+    /* padding: 24px 0 0px; */
+    /* border-bottom: 5px solid transparent; */
+    /* text-transform: uppercase; */
+    font-size: 13px!important;
+    font-weight: 600;
     background-color: transparent;
     -webkit-transition: all 0.3s ease-out;
             transition: all 0.3s ease-out;
@@ -512,9 +531,9 @@ header.nav {
 }
 
 .static-menu li a {
-    padding: 15px 0;
+    padding: 15px 10px;
     font-size: 22px;
-    color: #727272;
+    color: #000000;
     border-bottom: 5px solid transparent;
     background-color: transparent;
 }
@@ -534,7 +553,7 @@ header.nav {
 }
 
 .static-menu li:last-child {
-    margin-left: 12px;
+    margin: 5px -25px -1px 0px;
 }
 
 .static-menu {}
@@ -581,39 +600,22 @@ header.nav {
 .submenu-ul {
     min-width: 170px;
     overflow: visible!important;
-    max-height: 100%;
     height: auto!important;
-    padding: 20px;
+    top:-55px;
 }
 
-.submenu-ul li {
-    color: #cccbcb;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 500;
-    line-height: 1.1;
-    margin-bottom: 21px;
-}
-
-.submenu-ul li:last-child {
-    margin-bottom: 0;
-}
-
-.submenu-ul li:hover {
-    background:transparent;
+.submenu-ul li {   
+    vertical-align: middle;
+    padding: 10px 20px;
 }
 
 .submenu-ul li a {
+    font-size: 14px!important;
+    font-weight: 600;
     padding: 0;
     color: #727272;
-    background-color: transparent;
-    display: block;
-    line-height: 1.1;
 }
 
-.submenu-ul li a:hover {
-    background-color: transparent;
-}
 
 /* --------------------------------- */
 /* 4. Home Section Styles
@@ -1103,7 +1105,7 @@ header.nav {
 .portfolio-category li a {
     display: block;
     color: #fff;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     text-decoration: none;
     padding-bottom: 10px;
     border-style: solid;
@@ -1196,7 +1198,7 @@ header.nav {
     font-weight: 400;
     font-size: 15px;
     color: #fff;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .protfolio-image:hover .p-overlay {
@@ -1428,7 +1430,7 @@ span.num {
 .context {
     color: #727272;
     font-size: 13px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .funfact-box .card-panel {
@@ -2061,10 +2063,10 @@ TOC :
     }
 
 
-    nav a.button-collapse {
-        color: #727272;
+    nav a.sidenav-trigger {
+        color: black;
         float: left;
-        left: 0;
+        left: -30px;
         position: absolute;
         top: 8px;
         z-index: 99;
@@ -2074,8 +2076,12 @@ TOC :
         z-index: 999;
     }
 
-    .side-nav li:first-child, .side-nav li {
+    .sidenav li:first-child, .sidenav li {
         margin-left: 0;
+    }
+
+    .sidenav .user-view {
+        margin-bottom: 0;
     }
 
     nav ul li {

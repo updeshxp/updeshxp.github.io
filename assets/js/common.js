@@ -3,6 +3,10 @@ var $ = jQuery;
 // callback after ready the document
 $(document).ready(function(){
 
+	$('.sidenav').sidenav();
+	$('.dropdown-trigger').dropdown();
+	
+
 	$('.search-form-li').on('click',function(e){
 		e.stopPropagation();
 		$('.search-form-li').find('#initSearchIcon').addClass('hide');
@@ -25,11 +29,11 @@ $(document).ready(function(){
 		hover: false,
 		alignment: 'right',
 		gutter: 10,
-		belowOrigin: true
+		coverTrigger: true
 	});
 
 
-	$(".primary-nav .button-collapse").sideNav();
+	// $(".primary-nav .button-collapse").sideNav();
 
 
 	// jwplayer video post
@@ -64,16 +68,16 @@ $(document).ready(function(){
 	}());
 
 
-	$("html").niceScroll({
-		cursorwidth: '7px',
-		zindex: '9999999'
-	});
+	// $("html").niceScroll({
+	// 	cursorwidth: '6px',
+	// 	zindex: '9999999'
+	// });
 
 });
 
 
 // callback after loading the window
-$(window).load(function(){
+$(window).on("load", function (e) {
 
 	// Preloader
     $('.loader').fadeOut();    
@@ -200,7 +204,7 @@ function getImage(str){
                         </div>
                       </div>
                       <div class="clearfix card-content">
-                        <a href="#" class="left js-favorite" title="Love this"><i class="mdi-action-favorite"></i><span class="numb">${like}</span></a>
+                        <a href="#" class="left js-favorite" title="Love this"><i class="material-icons">favorite</i><span class="numb">${like}</span></a>
                         <a href="${post.url}" class="brand-text right waves-effect">Read More</a>
                       </div>
                     </div>
