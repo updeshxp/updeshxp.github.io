@@ -503,7 +503,7 @@ header.nav {
 
 .sidenav li a {
     color: #727272;
-    margin:10px 0 0;
+    margin:10px 0 10px 0px;
     /* padding: 24px 0 0px; */
     /* border-bottom: 5px solid transparent; */
     /* text-transform: uppercase; */

@@ -490,7 +490,8 @@ $('#sendInfo').on('submit', function (e) {
 		alert("spam detected");
 		return false;
 	}
-    //$("#loading-overlay").show();
+    $('#preloader').show();
+	$('.loader').show(); 
 	var url = "https://script.google.com/macros/s/AKfycbyX6f4c1mno5bZXi3oiAdv-ASk4wfbTp1UGfEfsfQ_DWRvkmg/exec";
 	$(this).attr('action', url);
     $.ajax({
